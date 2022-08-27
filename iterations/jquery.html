@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://mattstow.com/js/ios-orientationchange-fix.min.js"></script>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        h1 {
+            font-size: 20px;
+        }
+        div {
+            width: 100%;
+            position: relative;
+        }
+        img[usemap] {
+            display: block;
+            margin: 0 auto;
+            border: none;
+            height: auto;
+            max-width: 100%;
+            width: auto;
+        }
+        </style>
+    <title>Document</title>
+</head>
+
+
+    <body class="vsc-initialized">
+        <div>
+            <h1>Responsive Image Maps jQuery Plugin</h1>
+            <p>Allows image maps to be used in a responsive design by recalculating the area coordinates to match the actual image size on load and window.resize.</p>
+            <p><a href="https://github.com/stowball/jQuery-rwdImageMaps">Download the plugin from github</a></p>
+            <p>This is a proof of concept for interactive maps on the website.</p>
+            <p>This image map was created with: https://www.image-map.net/</p>
+            <p>Other sources of inspiration: </p>
+            <ul>
+                <li>https://www.w3schools.com/tags/tag_map.asp. But map tag was part of HTML3 spec and not designed with RWD in mind. Need to come up with a different way of resolving this. The main issue is that the coordinates which define your 'hotspot' areas which you can attach interactivity to, are hard coded absolute values. So, they do not adjust as the dimensions of the image changes.</li>
+                <li>This uses a jQuery plugin but it is not maintained (last PR was 2016). Having said that, someone came up with a plain JS version but I couldn't get this to work: https://github.com/lucakiebel/vanilla-rwdImageMaps. Might be worth revisiting this to refactor code and reduce dependencies.</li>
+                <li>I searched google for ideas but nothing conclusive. I found this blog which uses html and css solution: https://matemarschalko.medium.com/interactive-image-maps-and-closable-popups-with-html-and-css-only-31fe36c70092. It lays the groundwork for this feature. But, the writer conveniently does not mention responsive design, although the post was published in 2021!</li>
+                <li>General SO search led me back to the jQuery solution: https://stackoverflow.com/questions/7844399/responsive-image-map</li>
+                <li>I found this alternative using SVGs: https://thenewcode.com/760/Create-A-Responsive-Imagemap-With-SVG. As the SVG scales, the coordinates should to recalculate based on scale. However, article comments mention it doesn't work with Wordpress and after a similar google search, it appears SVGs are not accepted in Drupal also. At least, not off the bat solution. </li>
+                <li>I did a search on Drupal.org forums to see if anyone else had a similar issue. Turns out a few did and were facing the same problems. Invariably, the outcome was to use the jQuery plugin, or attempt an outdated module install: https://www.drupal.org/forum/general/general-discussion/2021-11-23/image-map-question or https://www.drupal.org/forum/general/general-discussion/2021-03-25/looking-for-a-module-or-other-solution-to-create-a-image</li>
+            </ul>
+ 
+
+            
+            <img src="WORLD copy_1200x629.png" usemap="#image-map">
+
+        <map name="image-map">
+            <area target="" alt="brazil_national_board" title="brazil_national_board" href="#brazil_national_board"
+                coords="464,505,325,368" shape="rect">
+            <area target="" alt="belize_national_board" title="belize_national_board" href="#belize_national_board"
+                coords="313,378,264,307" shape="rect">
+            <area target="" alt="switzerland_national_board" title="switzerland_national_board"
+                href="#switzerland_national_board" coords="566,206,610,257" shape="rect">
+            <area target="" alt="thailand_national_board" title="thailand_national_board"
+                href="#thailand_national_board" coords="859,312,899,369" shape="rect">
+        </map>
+
+        <div class="popup" id="belize_national_board">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Flag_of_Belize.svg/1920px-Flag_of_Belize.svg.png" alt="belize flag">
+            <a href="https://www.oneyoungworld.com/belize-national-board" target="_blank">Belize National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+        <div class="popup" id="brazil_national_board">
+            <img src="https://images.unsplash.com/photo-1632184078944-b8a9cd828a57?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="brazil flag">
+            <a href="https://www.oneyoungworld.com/brazil-national-board" target="_blank">Brazil National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+        <div class="popup" id="switzerland_national_board">
+            <img src="https://images.unsplash.com/photo-1618493075021-1bbe5deebedf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80" alt="switzerland flag">
+            <a href="https://www.oneyoungworld.com/switzerland-national-board" target="_blank">Switzerland National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+        <div class="popup" id="thailand_national_board">
+            <img src="https://images.unsplash.com/photo-1645421105080-525091cfead0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="thailand flag">
+            <a href="https://www.oneyoungworld.com/thailand-national-board" target="_blank">Thailand National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+
+            <!-- <img src="http://mattstow.com/experiment/responsive-image-maps/powerpuff-girls.fw.jpg" width="1024" height="768" usemap="#powerpuffgirls" alt="">
+            <map name="powerpuffgirls">
+                <area shape="poly" coords="122,36,281,36,285,37,287,39,289,42,289,46,289,48,278,77,276,81,274,84,271,84,218,84,218,90,210,90,208,95,207,99,204,100,72,100,26,87,23,84,20,81,19,75,35,40,37,37,43,34,62,34,65,30,68,25,72,25,115,25,119,27,121,30,122,36,122,36" href="#ppg" title="The Powerpuff Girls" alt="The Powerpuff Girls">
+                <area shape="poly" coords="864,667,912,649,922,667,971,667,973,718,981,721,985,729,988,730,1010,730,1010,742,833,742,833,730,865,730,865,721,874,721,874,718,864,667,864,667" href="#cn" title="Cartoon Network" alt="Cartoon Network">
+                <area shape="poly" coords="1010,297,995,281,979,267,962,255,944,248,927,242,909,237,876,236,857,237,838,240,817,246,797,255,778,266,761,281,746,299,735,321,730,335,728,345,726,348,721,348,709,344,711,360,718,378,708,380,697,388,688,397,685,403,685,411,686,418,691,424,698,429,707,430,735,426,743,427,752,433,762,444,774,454,798,469,787,483,779,481,772,481,761,486,753,495,747,505,746,516,746,520,748,526,751,532,759,538,741,561,734,571,732,583,733,591,737,598,744,604,754,607,765,604,776,597,797,570,817,543,857,487,865,487,893,487,910,484,924,483,930,483,935,484,939,490,934,496,931,501,929,505,932,514,938,519,945,522,954,523,966,520,979,516,985,511,989,507,993,499,994,493,991,484,986,475,967,463,982,454,998,439,1013,424,1024,409,1024,329,1017,312,1010,297,1010,297" href="#buttercup" title="Buttercup" alt="Buttercup">
+                <area shape="poly" coords="571,100,563,83,562,66,549,80,541,96,537,112,536,127,537,141,531,141,508,141,508,141,511,133,517,126,533,114,500,111,476,111,452,114,438,118,424,124,410,130,400,139,392,151,390,166,391,174,394,183,400,190,409,198,391,215,379,234,371,252,368,270,367,276,368,297,371,315,381,338,396,357,414,375,399,378,387,385,379,393,377,405,378,412,382,418,388,424,395,429,411,433,425,435,431,445,439,456,459,474,480,487,502,499,514,507,523,514,528,523,530,534,529,541,526,547,515,562,532,556,548,547,562,535,574,523,583,508,590,490,594,469,596,448,596,430,591,409,587,397,599,390,613,381,628,371,643,356,657,336,666,312,669,299,670,284,669,276,668,264,670,263,697,263,704,261,711,257,716,251,719,243,718,236,715,231,706,221,694,215,683,213,677,213,670,215,664,219,656,231,645,215,652,206,657,198,660,190,662,181,660,169,655,157,648,150,638,142,617,130,596,120,582,112,571,100,571,100" href="#blossom" title="Blossom" alt="Blossom">
+                <area shape="poly" coords="254,285,232,270,207,260,179,254,150,252,119,254,103,257,88,263,71,270,61,275,58,273,57,273,45,269,36,267,17,270,7,276,1,282,0,282,0,285,0,290,0,351,2,354,1,354,1,390,3,400,5,409,9,420,22,441,39,460,58,475,47,480,38,487,32,493,30,504,33,514,41,523,53,531,69,534,77,532,85,529,90,525,93,517,91,511,88,508,85,505,85,502,86,499,89,496,97,496,120,499,138,502,154,502,167,502,185,531,215,576,235,609,241,616,248,622,255,625,265,628,273,625,280,621,285,613,287,604,283,592,276,580,261,558,269,553,273,547,276,541,277,535,274,523,267,513,257,504,250,501,244,501,240,502,237,502,225,487,242,478,259,468,276,451,282,447,292,445,318,450,327,448,334,445,339,439,341,430,337,418,329,409,318,400,307,397,301,397,301,393,301,391,303,391,321,393,336,391,352,387,370,380,387,369,373,368,364,363,358,360,353,354,350,347,347,330,345,312,343,302,340,293,336,285,331,279,318,272,305,267,293,266,282,267,272,270,262,276,254,285,254,285" href="#bubbles" title="Bubbles" alt="Bubbles">
+        </map> -->
+        </div>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://mattstow.com/experiment/responsive-image-maps/jquery.rwdImageMaps.min.js"></script>
+        <script>
+        $(document).ready(function(e) {
+            $('img[usemap]').rwdImageMaps();
+            
+            // $('area').on('click', function() {
+            //     alert($(this).attr('alt') + ' clicked');
+            // });
+        });
+        </script>
+        
+        
+        <!-- <div style="position: static !important;"></div> -->
+    
+    
+
+    
+
+
+        
+
+   
+
+
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="jquery.rwdImageMaps.min.js"></script> -->
+    <!-- <script>
+        $(document).ready(function (e) {
+            $('img[usemap]').rwdImageMaps();
+
+            $('area').on('click', function () {
+                alert($(this).attr('alt') + ' clicked');
+            });
+        });
+    </script> -->
+
+    <style>
+       .popup {
+    height: auto;
+    max-width: 200px;
+    padding: 2px;
+    background-color: rgba(100, 100, 100, 0.9);
+    color: white;
+    font-weight: 100;
+    font-size: 20px;
+    position: absolute;
+    top: 85%;
+    left: 57%;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .popup:target {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .popup > .close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background-color: black;
+    padding: 4px 10px;
+  }
+  .popup img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+        area {
+            outline: 1px solid red;
+        }
+
+        @media screen and (max-width: 768px) {
+            .popup {
+                font-size: 14px;
+                max-width: 100px;
+            }
+
+        } 
+    </style>
+</body>
+
+</html>

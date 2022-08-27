@@ -1,0 +1,42 @@
+/* main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  area {
+    outline: 10px solid var(--red);
+  }
+  
+  .popup {
+    height: auto;
+    width: 400px;
+    padding: 20px;
+    background-color: rgba(100, 100, 100, 0.9);
+    color: white;
+    font-weight: 100;
+    font-size: 36px;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+  .popup:target {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .popup > .close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background-color: black;
+    padding: 4px 10px;
+  }

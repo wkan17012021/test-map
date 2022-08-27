@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+
+        div {
+            width: 100%;
+            position: relative;
+        }
+
+        img[usemap] {
+            display: block;
+            margin: 0 auto;
+            border: none;
+            height: auto;
+            max-width: 100%;
+            width: auto;
+        }
+    </style>
+
+    <style>
+        .popup {
+            height: auto;
+            max-width: 200px;
+            padding: 2px;
+            background-color: rgba(100, 100, 100, 0.9);
+            color: white;
+            font-weight: 100;
+            font-size: 20px;
+            position: absolute;
+            top: 85%;
+            left: 57%;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 300ms, transform 300ms;
+        }
+
+        .popup:target {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .popup>.close {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background-color: black;
+            padding: 4px 10px;
+        }
+
+        .popup img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* area {
+            outline: 1px solid red;
+        } */
+
+        @media screen and (max-width: 768px) {
+            .popup {
+                font-size: 14px;
+                max-width: 100px;
+            }
+
+        }
+    </style>
+
+
+    <title>Document</title>
+</head>
+
+
+<body class="vsc-initialized">
+    <div>
+        <h1>Responsive Image Maps with Vanilla JS</h1>
+
+        <img src="WORLD copy_1200x629.png" usemap="#image-map">
+
+        <map name="image-map">
+            <area target="" alt="brazil_national_board" title="brazil_national_board" href="#brazil_national_board"
+                coords="464,505,325,368" shape="rect">
+            <area target="" alt="belize_national_board" title="belize_national_board" href="#belize_national_board"
+                coords="313,378,264,307" shape="rect">
+            <area target="" alt="switzerland_national_board" title="switzerland_national_board"
+                href="#switzerland_national_board" coords="566,206,610,257" shape="rect">
+            <area target="" alt="thailand_national_board" title="thailand_national_board"
+                href="#thailand_national_board" coords="859,312,899,369" shape="rect">
+        </map>
+
+        <div class="popup" id="belize_national_board">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Flag_of_Belize.svg/1920px-Flag_of_Belize.svg.png"
+                alt="belize flag">
+            <a href="https://www.oneyoungworld.com/belize-national-board" target="_blank">Belize National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+        <div class="popup" id="brazil_national_board">
+            <img src="https://images.unsplash.com/photo-1632184078944-b8a9cd828a57?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                alt="brazil flag">
+            <a href="https://www.oneyoungworld.com/brazil-national-board" target="_blank">Brazil National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+        <div class="popup" id="switzerland_national_board">
+            <img src="https://images.unsplash.com/photo-1618493075021-1bbe5deebedf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
+                alt="switzerland flag">
+            <a href="https://www.oneyoungworld.com/switzerland-national-board" target="_blank">Switzerland National
+                Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+        <div class="popup" id="thailand_national_board">
+            <img src="https://images.unsplash.com/photo-1645421105080-525091cfead0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                alt="thailand flag">
+            <a href="https://www.oneyoungworld.com/thailand-national-board" target="_blank">Thailand National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+    /* Courtesy of guregu's github gist: https://gist.github.com/guregu/e9f9caaed4b264a9214799bf03a06946 */
+    function fixImageMaps(force) {
+		var imgs = document.querySelectorAll("img[usemap]");
+		[].forEach.call(imgs, function(img) {
+			if (!img.naturalHeight) { return; }
+			var h = img.height / img.naturalHeight;
+			var w = img.width / img.naturalWidth;
+			var map = document.getElementsByName(img.useMap.slice(1))[0];
+			if (!map) { return; }
+			for (var i = 0; i < map.children.length; i++) {
+				var area = map.children[i];
+				if (!area.coords) { continue; }
+				var coords = area.coords;
+				if (!area.originalCoords) {
+					area.originalCoords = coords;
+				} else {
+					coords = area.originalCoords;
+				}
+				var split = coords.split(",")
+				var fixed = "";
+				split.forEach(function(coord, n) {
+					if (n != 0) { fixed += ","; }
+					fixed += n % 2 == 0 ? Number(coord) * w : Number(coord) * h;
+				})
+				area.coords = fixed;
+			}
+		});
+	}
+	window.onresize = fixImageMaps;
+	window.onload = fixImageMaps;
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./base.css">
+    <link rel="stylesheet" href="./map.css">
+
+</head>
+
+<body>
+    <main>
+        <img src="WORLD copy.png" usemap="#world-map">
+
+        <map name="world-map">
+            <area alt="Belize National Board" title="belize_national_board" href="#belize_national_board"
+                coords="1869,1679, 100" shape="circle">
+            <area alt="Brazil National Board" title="brazil_national_board" href="#brazil_national_board"
+                coords="1869,1679,1803,1640,1746,1640,1698,1609,1646,1631,1672,1592,1654,1552,1584,1574,1554,1592,1545,1552,1483,1561,1492,1596,1470,1609,1418,1578,1409,1618,1409,1644,1391,1675,1374,1692,1374,1723,1391,1741,1413,1749,1475,1736,1475,1767,1505,1780,1532,1793,1554,1828,1580,1872,1606,1920,1628,1973,1589,2012,1628,2052,1663,2017,1689,1991,1689,1934,1781,1907,1821,1828,1803,1771,1847,1749,1869,1719"
+                shape="poly">
+            <area alt="Switzerland National Board" title="switzerland_national_board" coords="1869,1000,100"
+                shape="circle">
+        </map>
+
+        <div class="popup" id="belize_national_board">
+            <a href="https://www.oneyoungworld.com/belize-national-board" target="_blank">Belize National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+        <div class="popup" id="brazil_national_board">
+            <a href="https://www.oneyoungworld.com/brazil-national-board" target="_blank">Brazil National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+        <div class="popup" id="switzerland_national_board">
+            <a href="https://www.oneyoungworld.com/swirtzerland-national-board">Switzerland National Board</a>
+            <a class="close" href="#">X</a>
+        </div>
+    </main>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="jquery.rwdImageMaps.min.js"></script>
+<script>
+$(document).ready(function(e) {
+    $('img[usemap]').rwdImageMaps();
+
+    $('area').on('focus', function(e) {
+      e.preventDefault();
+      $('.selection p').html($(this).attr('class'));      
+    });
+  
+    $(document).on('click', function(e) {
+      e.preventDefault();
+      if ( $(e.target).closest('area').length === 0 ) {
+        $('.selection p').html('click a brick'); 
+      }  
+    });
+    
+});
+
+</script>
+
+
+
+    </script>
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/gh/lucakiebel/vanilla-rwdImageMaps@1.9/vanilla.rwdImageMaps.min.js">
+        document.addEventListener("DOMContentLoaded", function(e) {
+    rwdImageMaps('img[usemap]');
+});
+    </script> -->
+</body>
+
+
+<!-- 
+href="https://www.oneyoungworld.com/belize-national-board"
+
+href="https://www.oneyoungworld.com/national-boards"
+
+href="https://www.oneyoungworld.com/switzerland-national-board" 
+-->
+
+</html>
