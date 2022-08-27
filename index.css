@@ -1,0 +1,127 @@
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+div {
+    max-width: 1000px;
+    width: 100%;
+    position: relative;
+}
+
+img[usemap] {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    height: auto;
+    
+    width: 100%;
+}
+
+.popup {
+    height: auto;
+    max-width: 200px;
+    padding: 2px;
+    background-color: rgba(100, 100, 100, 0.9);
+    color: white;
+    font-weight: 100;
+    font-size: 20px;
+    position: absolute;
+    top: 85%;
+    left: 57%;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.popup:target {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.popup>.close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background-color: black;
+    padding: 4px 10px;
+}
+
+.popup img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .popup {
+        font-size: 14px;
+        max-width: 100px;
+    }
+
+}
+
+.map span {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    background-color: #B62584;
+
+    /* animation */
+    animation: highlight 1.5s linear infinite;
+}
+
+@keyframes highlight {
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }    
+}
+/* positioning for 540px and less*/
+.markerBrazil {
+    top: 62%;
+    left: 32.5%;
+}
+.markerBelize {
+    top: 50%;
+    left: 22%;
+}
+.markerSwitzerland {
+    top: 33%;
+    left: 48%;
+}
+.markerThailand {
+    top: 50%;
+    left: 72%;
+}
+
+@media screen and (min-width: 768px){
+    .markerBrazil {
+    top: 66%;
+    left: 32.5%;
+}
+.markerBelize {
+    top: 52%;
+    left: 22%;
+}
+.markerSwitzerland {
+    top: 36%;
+    left: 48%;
+}
+.markerThailand {
+    top: 54%;
+    left: 72%;
+}
+}
+
+// shows red border when you click and hold around the country ( this is the coordinates of the clickable area)
+ area {
+    outline: 5px solid red;
+}
+
+
