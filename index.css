@@ -35,8 +35,6 @@ img[usemap] {
   transition: opacity 300ms, transform 300ms;
 }
 
-// make popups smaller at mobile size by reducing popup max-width: %?
-
 .popup-brazil {
   top: 70%;
   left: 37%;
