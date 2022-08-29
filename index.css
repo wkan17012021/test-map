@@ -51,9 +51,9 @@ img[usemap] {
 }
 
 .popup-belize {
-    top: 58%;
-    left: 2%;
-  }
+  top: 58%;
+  left: 2%;
+}
 
 .popup:target {
   opacity: 1;
@@ -98,22 +98,22 @@ img[usemap] {
     opacity: 0;
   }
 }
-/* positioning for 540px and less*/
+
 .markerBrazil {
-  top: 62%;
+  top: 66%;
   left: 32.5%;
 }
 .markerBelize {
-  top: 50%;
-  left: 22%;
+  top: 51%;
+  left: 22.5%;
 }
 .markerSwitzerland {
-  top: 33%;
-  left: 48%;
+  top: 34.5%;
+  left: 48.5%;
 }
 .markerThailand {
   top: 50%;
-  left: 72%;
+  left: 71.5%;
 }
 
 @media screen and (min-width: 768px) {
@@ -123,14 +123,14 @@ img[usemap] {
   }
   .markerBelize {
     top: 52%;
-    left: 22%;
+    left: 23%;
   }
   .markerSwitzerland {
-    top: 36%;
-    left: 48%;
+    top: 35.5%;
+    left: 48.5%;
   }
   .markerThailand {
-    top: 54%;
+    top: 50%;
     left: 72%;
   }
 }
